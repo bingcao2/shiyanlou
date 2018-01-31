@@ -29,7 +29,7 @@ def calc_remain(income):
     income_remain = income - social
     tax = income_remain - Income_start
     if tax <= 0:
-        return '0.00', '{:.2f}'.format(real_income)
+        return '0.00', '{:.2f}'.format(income)
     for item in Income_tax_table:
         if tax > item.start:
             tax_final = tax * item.tax_rate - item.quick_substractor
