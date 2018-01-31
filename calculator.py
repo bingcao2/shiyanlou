@@ -3,7 +3,7 @@
 import sys
 from collections import namedtuple
 
-Income = namedtuple('Income', ['start', 'tax_rate', 'quick_substractor']
+Income = namedtuple('Income', ['start', 'tax_rate', 'quick_substractor'])
 
 Income_start = 3500
 
@@ -17,7 +17,7 @@ Income_tax_table = [
     Income(0, 0.03, 0),
 ]
 
-Socaial_Insurance = {
+Social_Insurance = {
     'a': 0.08,
     'b': 0.02,
     'c': 0.005,
@@ -30,7 +30,7 @@ def calc_remain(income):
     tax = income_remain - Income_start
     if tax <= 0:
         return '0.00', '{:.2f}'.format(real_income)
-    for item in Income_tax_table
+    for item in Income_tax_table:
         if tax > item.start:
             tax_final = tax * item.tax_rate - item.quick_substractor
             return '{:.2f}'.format(tax_final), '{:.2f}'.format(income_remain - tax_final)
@@ -43,7 +43,7 @@ def main():
         except ValueError:
             print('Parameter Error')
         _, remain = calc_remain(income)
-        print('{}:{}'.format(employee_id, remain)
+        print('{}:{}'.format(employee_id, remain))
 
 if __name__ == '__main__':
     main()
