@@ -7,7 +7,7 @@ app = Flask(__name__)
 class Files(object):
     directory = os.path.join(os.path.abspath(os.path.dirname(__name__)), '..', 'files')
     def __init__(self):
-        self.files = self._read_all_files()
+        self._files = self._read_all_files()
 
     def _read_all_files(self):
         result = {}
@@ -18,7 +18,7 @@ class Files(object):
         return result
 
     def get_title_list(self):
-        return [item['title'] for item in self._files_values()]
+        return [item['title'] for item in self._files.values()]
 
     def get_by_filename(self, filename):
         return self._files.get(filename)
@@ -29,7 +29,7 @@ files = Files()
 def index():
     return render_template('index.html', title_list=files.get_title_list())
 
-@app.route('/file/<filename>')
+@app.route('/files/<filename>')
 def file(filename):
     file_item = files.get_by_filename(filename)
     if not file_item:
